@@ -1,0 +1,156 @@
+<link rel="stylesheet" type="text/css" href="/besg/data/css/main.css" />
+<script type="text/javascript">
+	
+	function accordionAddIn(){
+		$("#board").accordion({
+			heightStyle: "content",
+			collapsible: true,
+			active:0 //設定一開始展開是第幾個accordion bar,從0出發
+		});
+	}
+	pageCompleteCustom=function(){
+		//預設應連到:
+		var wikiURL="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/最新消息";
+		//測試時:
+		wikiURL='/besg/data/news.html';
+		
+		$.ajax({
+			url:wikiURL,
+			cache:false,
+			success:function(data){
+				$("#board").fadeOut(function(){
+					$("#board").empty();
+					$(data).find('#board').children().each(function(){
+						if($(this).is("h3")){
+							$("#board").append($(this));
+						}
+						else if($(this).is("div")){
+							$("#board").append($(this));
+						}
+					});
+				
+					accordionAddIn();
+					$("#board").show();
+					pageComplete(true,true,true);
+				})
+			},
+			error:function(){
+				console.log('wiki最新消息位置:'+wikiURL+'\n讀取失敗！');
+				//accordionAddIn();
+				pageComplete(true,true,true);
+			}
+		});
+	}
+</script>
+<h1 id="header">最新消息</h1>
+	
+	<!-- 
+		一個新聞:
+		<h3>標題</h3>
+		<div>
+			<p style="text-align:left; font-size:14px; margin:1em;">
+				內容
+			</p>
+			<p style="text-align:right; font-size:14px; margin:1em;">
+				時間
+            </p>
+		</div>
+	-->
+	
+	<div id="board">
+		<p style="text-align:left; font-size:14px; margin:1em;">loading...</p>
+		<p style="text-align:right; font-size:14px; margin:1em;">若顯示不出內容，請到<a href="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/最新消息" target="_blank">本活動wiki最新消息</a>觀看最新消息</p>
+		<!--
+		<h3>3月27-29日中午於綜合大樓也可進行繳費動作！</h3>
+		<div>
+			<p style="text-align:left; font-size:14px; margin:1em;">
+				報名成功的召喚師們可以於3月27~29日每天中午12：00~13：00與17：00~21：00至圓廳301學生會會辦，
+				或是3月27~29日每天中午12：00~13：00於綜合教學大樓1F黑天鵝杯籌備委員會攤位進行繳費動作！
+			</p>
+			<p style="text-align:right; font-size:14px; margin:1em;">
+				# 黑天鵝盃電競聯賽籌備委員會 2013/3/24 19:00
+            </p>
+		</div>
+		<h3>原始系統已經開放使用</h3>
+		<div>
+			<p style="text-align:left; font-size:14px; margin:1em;">
+				左方報名系統已經維修完成，若有任何報名錯誤，也可以使用<a href="/sgNewCore/besg/register">備用報名系統</a><br>
+			</p>
+			<p style="text-align:right; font-size:14px; margin:1em;">
+				# 黑天鵝盃電競聯賽籌備委員會 技術組 2013/3/23 01:30
+            </p>
+		</div>
+		<h3>報名費以及選手報到規定有更改！</h3>
+		<div>
+			<p style="text-align:left; font-size:14px; margin:1em;">
+				1.原本報名費應於報名後三天內繳交，現在更正為3月27~29日每天中午12：00~13：00與17：00~21：00至圓廳301學生會會辦繳交。<br/>
+				2.原本賽程由大會決定，現在改為各隊隊長於4月8日中午12：00~13：00與17：00~20：00至圓廳301學生會會辦抽籤，未到者由工作人員代抽
+			</p>
+			<p style="text-align:right; font-size:14px; margin:1em;">
+				# 黑天鵝盃電競聯賽籌備委員會 2013/3/17 23:40
+            </p>
+		</div>
+		<h3>關於報名系統不穩定之道歉與說明</h3>
+        <div >
+			<p style="text-align:left; font-size:14px; margin:1em;">
+            由於團隊後端系統的人數不足，導致無法在預定日期準時正常對外開放，<br />
+            技術組在這邊對大家道歉，我們也已經請技術顧問支援協助，<br />
+            在昨日緊急寫了一個備用的報名系統提供大家使用。<br />
+            經過測試後已確定能正常使用，希望此插曲不會澆滅大家的熱情。>___<<br />
+            </p>
+            <p style="text-align:left; font-size:14px; margin:1em;">
+            該備用系統預計從2013/03/16 中午 12 點正式啟用，<br />
+            請希望報名黑天鵝盃電競聯賽的同學，點選本網站左側報名連結，<br />
+            直接移往該備用系統進行報名程序。<br />
+            </p>
+            <p style="text-align:left; font-size:14px; margin:1em;">
+            我們報名的日期是從報名系統正式啟用開始，<br />
+            並於2013/03/29 中午 12 點，結束報名，共計14天網路填表時間。<br />
+            但是網路填表並不代表報名成功，而是必須到實體駐點繳費才算成功，<br />
+            而繳費的日期是從2013/03/18開始到2013/03/29的上課日。<br />
+            實際駐點我們會再請賽程組另外公告。<br />
+            </p>
+            <p style="text-align:left; font-size:14px; margin:1em;">
+            最後技術組在對各位召喚師獻上最誠摯的道歉，<br />
+            希望你們能繼續燃燒對LOL的熱情，共同參與本次賽事。<br />
+            祝各位黑天鵝盃電競聯賽拔得頭籌、競賽愉快。<br />
+            </p>
+            <p style="text-align:right; font-size:14px; margin:1em;">
+            # 黑天鵝盃電競聯賽籌備委員會 技術組<br />
+            </p>
+		</div>
+        
+		<h3>報名系統將於16:00修復</h3>
+		<div>
+			<p>12:00時報名系統有嚴重問題，緊急啟用備用系統</p>
+			<p sytle='text-align:right;'>12:50</p>
+		</div>
+		
+		<h3>近期活動將展開，請注意！</h3>
+		<div>
+			<p>報名開始於3/15，請大家看好規則，備好資料，搶報名。</p><p>(限72組名額)</p>
+		</div>
+		
+		<h3>活動海報出爐！</h3>
+		<div>
+				<img src="/besg/data/images/poster.jpg" style="width:50%"/>
+				<div id="board_text1">
+				<p>隱藏在中興各角落的召喚師們，</p>
+				<p>想一睹合作無間的生死對決？</p>
+				<p>想一探TPA稱霸的無止之路？</p>
+				<p>電競、激鬥、新中興</p>
+				<p>競賽項目：英雄聯盟電競聯賽</p>
+				<p>報名時間：102.3.15~102.3.29</p>
+				<p>參賽對象：中興大學全體學生</p>
+				<p>報名費用：300元/隊</p>
+				</div>
+		</div>
+		
+		<h3>活動網頁上線啦</h3>
+		<div>
+			<p>
+			活動正在蓬勃準備中，敬請期待！
+			</p>
+		</div>
+		-->
+	</div>

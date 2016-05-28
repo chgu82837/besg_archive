@@ -1,0 +1,33 @@
+fieldset.qa
+{
+	/*
+	padding-top : 20px;
+	font-size : 20px;
+	height : 99%;
+	width	:	99%;
+	*/
+}
+/*
+p.qa_alert
+{
+	font-size : 15px;
+	
+}
+*/
+.qaNickName{
+	width: 99%;
+	border-radius: 5px;
+}
+
+.qa_alert{
+	text-align: center;
+}
+
+.qaContent{
+	border-radius: 5px;
+	width: 99%;
+	height: 200px;
+}
+#askQuestion{
+	width: 100%;
+}

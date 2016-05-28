@@ -1,0 +1,51 @@
+#page h1{	text-align :center;
+	font-weight:normal;
+	font-size:30px;}
+#page h2{	font-size:25px;
+	font-weight:bold;}
+	/*bold=700;normal=400*/
+#page h3{
+    margin-left:30px;
+}
+#page li{	font-size:80%;
+	margin-left:40px;
+	line-height: 30px;
+	letter-spacing: 1px;}
+#page ul{	padding-right:10px;
+    margin-left:10px;
+	list-style-type:disc;
+	font-size:20px;
+	font-weight:600;}
+#page span.light{	color:#FF9F00;
+		padding-left:1px;
+		padding-right:1px;}
+#page a{
+	text-align: center;
+	width: 100%;
+	margin-bottom:0.5em;
+}
+#page{
+	color:while;
+}
+
+/*這是wiki上面的那個目錄欄，在這點了也沒用，就讓大家看不到它吧*/
+#toc{
+	display: none;
+}
+#page span.editsection{
+	line-height:0;
+	font-size:0;
+	overflow:hidden;
+}
+/*這是用來隱藏"[編輯]"用的*/
+#page span.mw-headline{
+	line-height:50px;
+	list-style-type:upper-roman;
+}
+/*是我搞錯了嗎？list-style-type沒有效果*/
+#page p{
+    margin-left:50px;
+}
+#page ol{
+    margin-left:30px;
+}

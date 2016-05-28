@@ -1,0 +1,54 @@
+<div class="content" id="page" tabindex="0" style="right: -17px;"><link rel="stylesheet" type="text/css" href="/besg/data/css/QAstyle.css?201305041455">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#QAboard').accordion({
+			heightStyle: "content",
+			collapsible: true,
+			active:1 //設定一開始展開是第幾個accordion bar,從0出發
+		});
+		$('.toBeButton').button();
+	});
+</script>
+
+<div id="headerBg"><h1 id="header" class="ui-widget-header">Q &amp; A</h1></div>
+
+﻿﻿<div id="QAboard" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+	<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-accordion-header-active ui-state-active ui-corner-top" role="tab" id="ui-accordion-QAboard-header-0" aria-controls="askingBox" aria-selected="true" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span>我要問問題！</h3>
+	<div id="askingBox" class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" aria-labelledby="ui-accordion-QAboard-header-0" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display: block;">
+		﻿
+<link rel="stylesheet" type="text/css" href="/besg/data/css/QApost.css?201305041320">
+<script>
+	$(document).ready(function(){
+		$('#askQuestion').button();
+		$('#askQuestion').click(function(event){
+			event.preventDefault();
+			var toBeSubmit={};
+			toBeSubmit[$('#askingBox input').attr('name')]=$('input').val();
+			toBeSubmit[$('#askingBox textarea').attr('name')]=$('textarea').val();
+			$.post('/besg/view/db_question.php',toBeSubmit,function(res){
+				$('#disabling').fadeIn(function(){
+					$('#askingBox').empty().append(res);
+					$('#disabling').fadeOut();
+				});
+			});
+		});
+	});
+</script>
+
+<form action="/besg/view/db_question.php" method="post" id="">
+	<fieldset class="qa">
+		<input class="qaNickName" placeholder="暱稱(限15字)" type="text" name="name" maxlength="15">
+		<textarea class="qaContent" name="question" maxlength="200" placeholder="問題(限200字)"></textarea>
+		<a id="askQuestion" type="submit" class="submit ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">送出</span></a>
+	</fieldset>
+
+
+	
+</form>		<a class="toBeButton ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" id="ToFB" style="width:100%" href="http://www.facebook.com/nchusg" target="_blank" role="button" aria-disabled="false"><span class="ui-button-text">前往黑天鵝臉書粉絲專頁查詢問題</span></a>
+	</div>
+	<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-accordion-icons ui-corner-all" role="tab" id="ui-accordion-QAboard-header-1" aria-controls="ui-accordion-QAboard-panel-1" aria-selected="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span>以前別人問的問題</h3>
+	<div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom" id="ui-accordion-QAboard-panel-1" aria-labelledby="ui-accordion-QAboard-header-1" role="tabpanel" aria-expanded="false" aria-hidden="true" style="display: none;">
+<h2 class="question">請問如果當天有正式人員無法上場該怎麼辦？</h2><h5 class="nickname">By:曉石之音</h5><br><h4 class="answer">Answer:請當天在檢錄時和監聽人員做說明，並將要候補的人知會給監聽人員<p></p><br></h4><h2 class="question">有關實況部分，實況人員無法及時回應觀眾需求要怎辦ww</h2><h5 class="nickname">By:LouisEXR</h5><br><h4 class="answer">Answer:同學您好，因為實況人員要專注在比賽上不便隨時切換畫面回應問題，造成您的不便不好意思。但一場結束後實況人員會看觀眾對話進行回應，對於無法即時回應您的問題真的很抱歉。		<p></p><br></h4></div>
+
+</div>
+</div>

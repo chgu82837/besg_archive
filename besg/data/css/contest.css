@@ -1,0 +1,272 @@
+/*CSS for contest.php*/
+
+/*標題文字:*/
+#contestHeader{
+	margin-bottom:0;
+}
+/*旋轉的文字:*/
+.circleText{
+	/*background:rgba(39, 39, 39, 0.47);*/
+	color:rgb(0, 82, 255);
+	font-weight: bolder;
+}
+
+
+/*對戰場次表格:*/
+#matchInfo{
+	width:100%;
+	text-align:center;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	color:white;	
+}
+.matchN{
+	width:5%;
+}
+.matchTeam{
+	width:50%;
+}
+.matchTime{
+	width:10%;
+}
+.matchLevel{
+	width:6%;
+}
+.matchGroup{
+	width:10%;
+}
+.matchResult{
+	width:20%;
+}
+
+/*隊伍資訊表格:*/
+#teamInfo{
+	width:100%;
+	text-align:center;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	color:white;	
+	overflow:hidden;
+	text-overflow:ellipsis;
+	
+}
+.teamInfoNameH{/*隊伍資訊表格之"隊伍全名："*/
+
+}
+.teamInfoName{/*隊伍資訊表格之隊伍名稱，字體大小用jQuery固定長度了，無法修改*/
+
+}
+.teamInfoSNameH{/*隊伍資訊表格之"隊伍簡稱："*/
+
+}
+.teamInfoSName{/*隊伍資訊表格之隊伍名稱*/
+	font-size:25px;
+}
+.teamInfoHL_GH{/*隊伍資訊表格之"級別/組別："*/
+
+}
+.teamInfoL_G{/*隊伍資訊表格之級別/組別*/
+
+}
+
+
+/*賽程圖上的隊伍(span):*/
+
+.aTeam{
+	-webkit-transition:top 0.3s,left 0.3s;
+	transition:top 0.3s,left 0.3s;
+}
+.aTeamShortName{
+	color:red;
+	font-weight:bolder;
+	font-family:Eras Bold ITC;
+	border-radius: 5px;
+	font-weight: 700;
+	
+	transition:color 0.5s,background 0.5s;
+	-webkit-transition:color 0.5s,background 0.5s;
+}
+
+.aTeamShortName:hover{
+	color:white;
+	background:purple;
+	
+}
+.aTeamShortName.winner{/*確定晉級隊伍*/
+	color:green;
+
+}
+.aTeamShortName.winner:hover{/*確定晉級隊伍*/
+	color:yellow;
+}
+.aTeamShortName.loser{/*確定淘汰隊伍*/
+	color:gray;
+}
+.aTeam.semiFinal .aTeamShortName{
+	color:rgb(177, 192, 230);
+	border: 2px rgb(180, 180, 180) solid;
+}
+.aTeam.semiFinal.semiFinalWinner .aTeamShortName{
+	color:rgb(160, 173, 0);
+}
+.aTeam.Final .aTeamShortName{
+	color:rgb(196, 196, 196);
+	background:rgb(91, 95, 0);
+	border: 2px rgb(234, 255, 76) solid;
+}
+.aTeam.Final .aTeamShortName:hover{
+	color:white;
+	background:black;
+}
+.aTeam.Final.FinalWinner .aTeamShortName{
+	color:rgb(246, 255, 136);
+	background:rgb(91, 95, 0);
+	transition:color 0.5s,background 0.5s;
+	-webkit-transition:color 0.5s,background 0.5s;
+}
+.aTeam.Final.FinalWinner .aTeamShortName:hover{
+	color:rgb(246, 255, 136);
+
+	
+	
+
+	animation-name: forTheChampion;
+	animation-duration: 5s;
+	animation-timing-function: linear;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-play-state: running;
+	/* Safari and Chrome: */
+	-webkit-animation-name: forTheChampion;
+	-webkit-animation-duration: 5s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-delay: 0s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-play-state: running;
+}
+@keyframes forTheChampion
+{
+	0%   {background: red;}
+	25%  {background: yellow;}
+	50%  {background: blue;}
+	75%  {background: green;}
+	100% {background: red;}
+}
+
+@-webkit-keyframes forTheChampion
+{
+	0%   {background: red;}
+	25%  {background: yellow;}
+	50%  {background: blue;}
+	75%  {background: green;}
+	100% {background: red;}
+}
+
+.aTeamShortName.aTeamBeingHovered{/*滑鼠移到該隊伍上時*/
+	color:rgb(123, 180, 0);
+}
+
+.aTeamShortName .whatGroupTheTeamIn{
+	display:none;
+	font-family:Eras Bold ITC;
+	position:absolute;
+	text-align: center;
+	top: -1.75em;
+	color: rgb(115, 193, 255);
+	background: rgb(21, 0, 107);
+	border: 2px solid gray;
+	border-radius: 4px;
+}
+
+.aTeamShortName:hover .whatGroupTheTeamIn{
+	display:block;
+	
+}
+
+.groupText{
+	display: none;
+}
+
+
+
+.ContestTableDocumentation{/*賽程圖使用方式的那些圖*/
+	width: 330px;
+	opacity:0.75;
+	border-radius: 5px;
+	margin: 5px;
+	position: absolute;
+	right: 5px;
+}
+.ContestTableDocumentation.ContestTableDocumentationHovered{/*賽程圖使用方式的那些圖被滑鼠移入時*/
+	opacity:0.1;
+}
+.contestInfoSearch{/*賽程資訊表格上的可按文字*/
+	color:yellow;
+}
+.contestInfoSearch.contestInfoSearchHovered{/*賽程資訊表格上的可按文字被滑鼠移入時*/
+	color:red;
+}
+
+.aTeamBack{
+	/*color:yellow*/
+	/*隊伍在賽程表上對應位置的點，已經移動到測試模式下顯示*/
+}
+
+.aGroupBack{
+	/*color:blue*/
+	/*一個組別在賽程表上對應位置的點，已經移動到測試模式下顯示*/
+}
+
+#contestMatch{/*原始頁面上的比賽場次表格*/
+	font-size: 12px;
+	width:100%;
+	text-align:center;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+	color:white;	
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+#contestMatch>tbody>tr>td:nth-child(3){/*原始頁面上的比賽場次表格，不要顯示時間*/
+	display:none;
+}
+
+#contestTable.contestTableTestingMode .aTeamBack{/*測試模式下，顯示一個隊伍簡稱在賽程表上的位置*/
+	width:4px;
+	height:4px;
+	background-color:yellow;
+}
+#contestTable.contestTableTestingMode .aGroupBack{/*測試模式下，顯示一個組別在賽程表上的位置*/
+	width:4px;
+	height:4px;
+	background-color:blue;
+}
+
+#contestTable.contestTableTestingMode .groupText{
+	display: inline-block;
+	text-align: center;
+	background: white;
+	color:rgb(0, 98, 145);
+	opacity:0.5;
+	
+	font-weight:bolder;
+	font-family:Eras Bold ITC;
+
+	transition:opacity 0.1s;
+	-webkit-transition:opacity 0.1s;
+}
+
+
+#contestTable.contestTableTestingMode .groupText:hover{
+	opacity:1;
+	
+}
+#contestTable.contestTableTestingMode .groupText.groupTextWrapShowGroupText{
+	opacity:0;
+}

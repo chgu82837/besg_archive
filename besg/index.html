@@ -1,0 +1,134 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>黑天鵝盃電競聯賽 - BESG</title>
+		<script src="/besg/data/js/jquery-1.9.1.min.js"></script>
+		<script src="/besg/data/js/jquery-ui-1.10.1.custom.min.js"></script>
+		<script src="/besg/data/js/jquery.nanoscroller.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/besg/data/css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="/besg/data/css/jquery-ui-1.10.1.custom.css" />
+		<link rel="stylesheet" type="text/css" href="/besg/data/css/nanoscroller.css" />
+		
+		<link rel="stylesheet" type="text/css" href="/besg/data/css/index.css?20130522" />
+
+		<script type="text/javascript">
+			
+			//定義讀取完成時執行的動作
+			function pageComplete(pageAni,toDisable,toMakeHeader){
+				if(toMakeHeader||toMakeHeader==undefined)
+					makeHeader('header');//讓標題自動套用jQuery ui主題
+				if(toDisable||toDisable==undefined)
+					$('#disabling').fadeOut('fast');
+				if(pageAni||pageAni==undefined){
+					$('#pageFrame').animate({
+						top:'10px',
+						height:'580px',
+						opacity:'1'
+					});
+				}
+			}
+			
+			//定義整套讀取的動作
+			var pageCompleteCustom;
+			function pageLoad(url){
+				pageCompleteCustom=undefined;
+				$('#disabling').fadeIn('fast');
+				$('#pageFrame').animate({
+					opacity:'0'
+				},function(){
+					$('#pageFrame').css({
+						top:'200px',
+						height:'500px'
+					});
+					
+					//ajax讀取
+					$.ajax({
+						url:url,
+						//cache:false,
+						success:function(data){
+							$('#page').empty();
+							$('#page').append(data);
+							//console.log(pageCompleteCustom);
+							if(pageCompleteCustom==undefined)
+								pageComplete(true,true,true);
+							else{
+								pageCompleteCustom();
+								pageComplete(true,false,true);
+							}
+							$(".nano").nanoScroller();
+						},
+						error:function(){
+							alert('很抱歉！讀取失敗！');
+							pageComplete(true,true,false);
+							$(".nano").nanoScroller();
+						}
+					});
+					//真正讀取完畢的用法...是這樣啊...
+				});
+			}
+			
+			//有Post內容要顯示在白畫面上時，makeEmpty為是否要清空白畫面的內容
+			function PostPopUp(url,toPost,makeEmpty){
+				$('#disabling').fadeIn('fast',function(){
+					$.post(url,toPost,function(res){
+						if(makeEmpty){
+							$("#popContent").empty();
+						}
+						$("#popContent").append(res);
+						$("#popWindow").fadeIn();
+						pageComplete(false);
+					});
+				});
+			}
+			
+			//在PopWindow上讀取外部資料
+			function PopUpLoad(url){
+				$('#disabling').fadeIn('fast',function(){
+					$("#popContent").load(url,function(){
+						$("#popWindow").fadeIn();
+						pageComplete(false);
+					})
+				});
+			}
+			
+			//定義套用jQuery ui主題標題的動作
+			function makeHeader(id){
+				$('#'+id).addClass('ui-widget-header');
+				$('#'+id).wrap("<div id='headerBg'></div>");
+			}
+			
+			$(document).ready(function(){
+				$('#container').load('view/bgBtn.html?201305041430',function(){
+					//讀取主頁，讀取完成時顯示出畫面
+					pageLoad('view/main.html');
+					$(this).animate({opacity:'1'});
+					
+					//滑鼠滑入滑出才更新捲動條
+					$("#pageFrame").hover(function(){
+						$(".nano").nanoScroller();
+					});
+				});
+				$("#closePopWindow").button().click(function(){
+					$("#popWindow").fadeOut();
+				});
+			});    
+		</script>
+    </head>
+    <body id="body">
+		<div id="container">
+		
+		</div>
+		
+		<div id="popWindow" style="display:none;">
+			<div id="popContent">
+				
+			</div>
+			<button id="closePopWindow" style="font-size:15px;">X</button>
+		</div>
+		
+		<div id="disabling">
+				<img id="loading" src="data/images/loading.gif"/>	
+	    </div>
+    </body>
+</html>

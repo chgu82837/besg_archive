@@ -1,0 +1,81 @@
+<link rel="stylesheet" type="text/css" href="/besg/data/css/bgBtn.css?20130522" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		//hover於按鈕上時
+		$('.btn').hover(function(event){
+			$(this).css({opacity:'1'});
+		},function(){
+			$(this).css({opacity:'0.5'});
+		});
+		
+		//比賽實況
+		$('#P1Btn').click(function(event){
+			event.preventDefault();
+			pageLoad('view/live.php?20130522');
+		});
+		
+		//選手專區
+		$('#P2Btn').click(function(event){
+			event.preventDefault();
+			pageLoad('view/start_regis.php?20130522');
+		});
+		
+		//贊助廠商
+		$('#P3Btn').click(function(event){
+			pageLoad('view/sponsor.php?20130522');
+		});
+		
+		//賽事公告
+		$('#P4Btn').click(function(event){
+			pageLoad('view/contest.php?20130522');
+		});
+		
+		//聯絡我們
+		$('#P5Btn').click(function(event){
+			event.preventDefault();
+			//pageLoad('view/QA.php?20130522');
+			pageLoad('/besg/data/qa_test.htm');
+		});
+		
+		//精彩畫面
+		$('#P6Btn').click(function(event){
+			pageLoad('view/video.php?20130522');
+		});
+		
+		//回首頁
+		$('#light').click(function(event){
+			pageLoad('view/main.html?20130522');
+		});
+		
+		//幕後
+		$('#logo').click(function(event){
+			pageLoad('view/behind.html?20130522');
+		});
+	});
+</script>
+
+<img id="background" src="/besg/data/images/background.png">
+<img id="light" class="btn" title="回首頁" src="/besg/data/images/light.png">
+<img id="logo" title="幕後團隊" src="/besg/data/images/logo.png">
+<h2 id="P1Btn" class="btn">比賽實況</h2>
+<h2 id="P2Btn" class="btn">選手專區</h2>
+<h2 id="P3Btn" class="btn">贊助廠商</h2>
+<h2 id="P4Btn" class="btn">賽事公告</h2>
+<h2 id="P5Btn" class="btn">聯絡我們</h2>
+<h2 id="P6Btn" class="btn">精彩畫面</h2>
+
+<div id="pageFrame">
+	<div id="about" class="nano">
+		<div class="content" id="page">
+		</div> 
+	</div>
+</div>
+<div id="declare">
+	<p>Copyright @ NCHU Student Goverment</p>
+	<p>版權所有 <a href="http://www.sg.nchu.edu.tw" style="text-decoration:none;color:white;" target="_blank">國立中興大學學生會</a></p>
+	<p><a href="http://www.sg.nchu.edu.tw/wiki/index.php/%E5%AD%B8%E7%94%9F%E6%9C%83:%E9%BB%91%E5%A4%A9%E9%B5%9D%E7%9B%83%E5%85%A8%E6%A0%A1%E9%9B%BB%E7%AB%B6%E8%81%AF%E8%B3%BD" style="text-decoration:none;color:white;" target="_blank">黑天鵝會誌：BESG條目</a></p>
+	<p>連絡電話:0912-854-922</p>
+</div>
+

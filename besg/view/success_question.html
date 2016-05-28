@@ -1,0 +1,20 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>發問成功</title><!--網頁名稱-->
+<!--
+<meta http-equiv="refresh"  content="3;url='/besg'">
+-->
+<script>
+	$(document).ready(function(){
+		var timerAfterAsking=setInterval(function(){
+			pageLoad('/besg/view/QA.php');
+			clearInterval(timerAfterAsking);
+		},3000);
+	});
+</script>
+</head>
+<body>
+發問成功 ，3秒後自動跳轉。
+</body>
+</html>

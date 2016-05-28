@@ -1,0 +1,15 @@
+﻿//This is the css for QA.
+
+h2.question
+{
+	padding-left: 5px;
+}
+h5.nickname
+{
+	text-align: right;
+	padding-right: 200px;
+}
+h4.answer
+{
+	padding-left: 30px;
+}

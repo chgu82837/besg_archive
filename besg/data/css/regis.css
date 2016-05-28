@@ -1,0 +1,71 @@
+/* Global 
+ * ========================================*/
+#page fieldset {
+	display: inline-block;
+	border: 1px solid #cdcdcd;
+	border-radius: 5px;
+	padding:1em;
+	text-align:center;
+}
+
+#page legend {
+	padding: 5px;
+}
+#page input {
+	width:46%;
+	border-radius:2px;
+	margin:5px;
+	padding: 3px;
+	border:none;
+	background-color:black;
+	color:white;
+}
+#page select{
+	margin: 5px;
+	background-color: black;
+	color:white;
+}
+
+/* backup_player
+ * ========================================*/
+
+#page button.backup_player {
+	margin: 1em 2%;
+	width: 95%;
+}
+#page div.backup_player {
+	display: none;
+}
+
+/* 針對特別欄位的設定 
+ * ========================================*/
+
+#page .tname{
+	width: 63%;
+}
+#page .depart{
+	width: 31%;
+}
+#page .grade{
+	width: 14%;
+}
+#page .shortname{
+	width: 29%;
+}
+#page .email{
+	width: 95%;
+}
+
+/* 錯誤訊息位置更正 
+ * ========================================*/
+
+.formError{
+    position: fixed!important;
+	width: 512px!important;
+	top: 90%!important;
+	left: 50%!important;
+	margin:0 0 0 -256px!important;
+}
+.formErrorArrow{
+	display:none!important;
+}

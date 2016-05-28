@@ -1,0 +1,20 @@
+#page #board .ui-accordion-header{
+	text-align: center;
+	font-size:20px;
+}
+#page #board_text1{
+	display:inline-block;
+	line-height: 39px;
+	width: 50%;
+	float: right;
+}
+}
+#page #board p{
+	font-size:17px;
+	text-align: center;
+}
+
+/*wiki*/
+#page .thumb{
+	display: inline-block;
+}
