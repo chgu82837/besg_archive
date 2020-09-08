@@ -25,9 +25,7 @@
 	});
 </script>
 
-<?php 
-	if(isset($_COOKIE["user"])==false):
-		echo "
+
 			<form id='loginForm' action='../view/result_login.php' method='post'>
 					<fieldset style='width: 93%;'>		
 						<legend>入口</legend>
@@ -36,17 +34,7 @@
 						<a id='loginBtn' style='width: 98%;'>登入</a>
 					</fieldset>
 			</form>
-		";
-?>
+		
 
-
-<?php
-	else:
-		echo "
-			<a id='toManage' sytle='width:50%;'>管理隊伍資料</a>
-			<a id='toLogout' sytle='width:20%;'>登出</a>
-		";
-	endif;
-?>
 </body>
 </html>

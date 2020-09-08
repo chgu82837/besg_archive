@@ -1,0 +1,49 @@
+﻿<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(document).ready(function($) {
+	makeHeader('teamName');
+	$('#finalSubmit').button().click(function(){
+		var toPost={};
+		term = $('#finalFrom input');
+		
+		for(i=0; i<term.size(); i++ )
+		{
+			toPost[term.eq(i).attr('name')]=term.eq(i).val();
+		}
+
+		PostPopUp("../besg/view/db_regis.php",toPost,false);
+	});
+});
+//]]>
+</script >
+﻿﻿
+<link rel="stylesheet" type="text/css" href="/besg/data/css/post_regis.css"/>
+<div id='content' style="width:1024px">
+
+	<form action="/besg/view/db_regis.php" method="post" id="finalFrom">
+
+
+		
+		<h1 id='teamName'>隊伍:     </h1>
+
+
+		
+
+	<table border="5" width="1024" style="table-layout:fixed; text-align:center;" >	
+		<tr>
+	<td width=70>姓名</td><td width=200>系所</td><td width=40>年級</td><td width=100>學號</td><td width=100>競時通帳號</td><td width=90>召喚師名稱</td><td width=100>手機</td><td width=300>e-mail</td>		</tr><tr>
+		<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>			
+		</tr><tr>
+	<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>			
+		</tr>
+	</table>
+
+				
+				
+			<div  style="display:none;">
+				
+
+				<input class='tname validate[required]' placeholder=隊名	type=hidden name=t_name  value= ><input class='shortname validate[required,minSize[3],maxSize[6],custom[onlyLetterSp]]' placeholder=隊伍英文縮寫	type=hidden name=t_sname  value= ><input placeholder=隊伍密碼 class='pw validate[required,minSize[6]]' type='hidden' name=t_pw value= ><input class="name validate[required]" placeholder="姓名" type="hidden" name="l_name" value= ><input class="depart" placeholder="系所" type="hidden" name="l_depart" value= ><input class="grade" placeholder="年級" type="hidden" name="l_grade" value= ><input class="stuid validate[required,custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="l_stuid" value= ><input class="garena validate[required]" placeholder="競時通帳號" type="hidden" name="l_garena" value= ><input class="sommoner validate[required]" placeholder="召喚師名稱" type="hidden" name="l_summoner" value= ><input class="cellphone validate[required,custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="l_phone" value= ><input class="email validate[required,custom[email]]" placeholder="E-Mail" type="hidden" name="l_email" value= ><input class="name validate[required]" placeholder="姓名" type="hidden" name="m_name_1"value= ><input class="depart" placeholder="系所" type="hidden" name="m_depart_1"value= ><input class="grade" placeholder="年級" type="hidden" name="m_grade_1"value= ><input class="stuid validate[required,custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="m_stuid_1"value= ><input class="garena validate[required]" placeholder="競時通帳號" type="hidden" name="m_garena_1"value= ><input class="sommoner validate[required]" placeholder="召喚師名稱" type="hidden" name="m_summoner_1"value= ><input class="cellphone validate[required,custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="m_phone_1"value= ><input class="email validate[required,custom[email]]" placeholder="E-Mail" type="hidden" name="m_email_1"value= ><input class="name validate[required]" placeholder="姓名" type="hidden" name="m_name_2"value= ><input class="depart" placeholder="系所" type="hidden" name="m_depart_2"value= ><input class="grade" placeholder="年級" type="hidden" name="m_grade_2"value= ><input class="stuid validate[required,custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="m_stuid_2"value= ><input class="garena validate[required]" placeholder="競時通帳號" type="hidden" name="m_garena_2"value= ><input class="sommoner validate[required]" placeholder="召喚師名稱" type="hidden" name="m_summoner_2"value= ><input class="cellphone validate[required,custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="m_phone_2"value= ><input class="email validate[required,custom[email]]" placeholder="E-Mail" type="hidden" name="m_email_2"value= ><input class="name validate[required]" placeholder="姓名" type="hidden" name="m_name_3"value= ><input class="depart" placeholder="系所" type="hidden" name="m_depart_3"value= ><input class="grade" placeholder="年級" type="hidden" name="m_grade_3"value= ><input class="stuid validate[required,custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="m_stuid_3"value= ><input class="garena validate[required]" placeholder="競時通帳號" type="hidden" name="m_garena_3"value= ><input class="sommoner validate[required]" placeholder="召喚師名稱" type="hidden" name="m_summoner_3"value= ><input class="cellphone validate[required,custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="m_phone_3"value= ><input class="email validate[required,custom[email]]" placeholder="E-Mail" type="hidden" name="m_email_3"value= ><input class="name validate[required]" placeholder="姓名" type="hidden" name="m_name_4"value= ><input class="depart" placeholder="系所" type="hidden" name="m_depart_4"value= ><input class="grade" placeholder="年級" type="hidden" name="m_grade_4"value= ><input class="stuid validate[required,custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="m_stuid_4"value= ><input class="garena validate[required]" placeholder="競時通帳號" type="hidden" name="m_garena_4"value= ><input class="sommoner validate[required]" placeholder="召喚師名稱" type="hidden" name="m_summoner_4"value= ><input class="cellphone validate[required,custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="m_phone_4"value= ><input class="email validate[required,custom[email]]" placeholder="E-Mail" type="hidden" name="m_email_4"value= ><input class="name" placeholder="姓名" type="hidden" name="sm_name_1"value= ><input class="depart" placeholder="系所" type="hidden" name="sm_depart_1"value= ><input class="grade" placeholder="年級" type="hidden" name="sm_grade_1"value= ><input class="stuid validate[custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="sm_stuid_1"value= ><input class="garena" placeholder="競時通帳號" type="hidden" name="sm_garena_1"value= ><input class="sommoner" placeholder="召喚師名稱" type="hidden" name="sm_summoner_1"value= ><input class="cellphone validate[custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="sm_phone_1"value= ><input class="email validate[custom[email]]" placeholder="E-Mail" type="hidden" name="sm_email_1"value= ><input class="name" placeholder="姓名" type="hidden" name="sm_name_2"value= ><input class="depart" placeholder="系所" type="hidden" name="sm_depart_2"value= ><input class="grade" placeholder="年級" type="hidden" name="sm_grade_2"value= ><input class="stuid validate[custom[integer],minSize[10],maxSize[10]]" placeholder="學號" type="hidden" name="sm_stuid_2"value= ><input class="garena" placeholder="競時通帳號" type="hidden" name="sm_garena_2"value= ><input class="sommoner" placeholder="召喚師名稱" type="hidden" name="sm_summoner_2"value= ><input class="cellphone validate[custom[phone],minSize[10],maxSize[10]]" placeholder="手機" type="hidden" name="sm_phone_2"value= ><input class="email validate[custom[email]]" placeholder="E-Mail" type="hidden" name="sm_email_2"value= >			</div>
+	</form>
+	<a style="text-align:center; width:100%; margin-top:1em;" id="finalSubmit">已確認完畢，送出！</a>
+</div><!--content-->

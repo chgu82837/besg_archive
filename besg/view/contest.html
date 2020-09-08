@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="/besg/data/js/jquery.zoom-min.js"></script>
+<script src="/besg/data/js/intro.js"></script>
+<script src="/besg/data/js/jQueryRotateCompressed.2.2.js"></script>
+<link rel="stylesheet" type="text/css" href="/besg/data/css/introjs.css?2013051623" />
+<link rel="stylesheet" type="text/css" href="/besg/data/css/contest.css?20130605" />
+</head>
+<body>
+<script type="text/javascript">
+	//資料以及參考資料---------------------------------------------------------------
+
+	//資料來源在wiki上的位置:
+	var contestTableImgURL="/wiki/images/f/f6/%E8%B3%BD%E7%A8%8B%E8%A1%A8.png";
+	var contestTableDocURL="/wiki/images/e/ef/ContestDoc.jpg";
+	var contestTableBackURL="/wiki/images/f/f2/%E8%B3%BD%E7%A8%8B%E8%A1%A8%E5%BA%95%E5%9C%96.png";
+	var contestDataURL="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/賽程表";
+	//用localhost測試時取消註解:
+	//
+	contestTableImgURL="/besg/data/images/賽程表.png";
+	contestTableDocURL="/besg/data/images/ContestDoc.jpg";
+	contestTableBackURL="/besg/data/images/賽程表底圖.png";
+	contestDataURL="/besg/data/contestData.htm";
+
+	//位置資料(半徑單位為百分比!):
+	function levelPositionClass(theLevelRadius,theLevelNofGroup,theGroupRadius,theLevelNofTeamPerGroup,theStartDegree,theTeamStartDegree){
+		this.levelRadius=theLevelRadius;
+		this.NofGroup=theLevelNofGroup;
+		this.groupRadius=theGroupRadius;
+		this.NofTeam=theLevelNofTeamPerGroup;
+		this.startDegree=theStartDegree;
+		this.teamStartDegree=theTeamStartDegree;
+		}
+	//賽程圖的大小(px*0.01)
+	var contestTableBackRes=12.80;
+	var levelPosition=new Array(
+		new levelPositionClass(44.25,16,2.8437,3,(-3)*Math.PI/16,0),
+		new levelPositionClass(34,16,2.76875705416709,2,(-3)*Math.PI/16,-Math.PI/2),
+		new levelPositionClass(25.35,8,2.690496149644151,2,-Math.PI/8,-Math.PI/2),
+		new levelPositionClass(15.859375,4,6.4453125,2,0,-Math.PI/2),
+		new levelPositionClass(4.95,2,5,2,Math.PI/4,-Math.PI/2)
+	);
+</script>
+<script type="text/javascript" src="/besg/data/js/contest.js?20130520" />
+<script type="text/javascript">
+	pageCompleteCustom=function(){
+
+		$("#contestBoard").accordion({
+			heightStyle: "content",
+			collapsible: true,
+			active:0 //設定一開始展開是第幾個accordion bar,從0出發
+		});
+		
+		var contestDoc=$('<img id="contestDocImg" style="width:100%" />').attr('src',contestTableDocURL).load(function(){
+			var theDiv=$('#ContestTableIntro').fadeOut(function(){
+				theDiv.empty();
+				theDiv.append('<a class="toBeButton" id="ToShowContestTableNew" style="width:50%;">開啟賽程表</a>');
+				theDiv.append('<a class="toBeButton" id="ToShowContestTable" style="width:48.5%;">開啟圖片版賽程表</a>');
+				theDiv.append('<a class="toBeButton" id="ToShowContestTableNewTest" style="width:99%;display:none;">測試</a>');
+				
+				theDiv.append(contestDoc);
+				$('#contestDocImg')
+					.wrap('<span style="display:inline-block;"></span>')
+    				.css('display', 'block')
+    				.parent()
+    				.zoom();
+
+				theDiv.append('<a class="toBeButton" target="_blank" href="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/賽程表" style="width:100%">前往WIKI觀看比賽場次</a>');
+				$(".toBeButton").button();
+				$("#ToShowContestTable").click(function(){
+					$('#disabling').fadeIn(function(){
+						showContestTableImg(function(){
+							$('#popWindow').fadeIn(function(){
+								$('#disabling').fadeOut();
+							});
+						});
+					});
+				});
+				$("#ToShowContestTableNew").click(function(){
+					$('#disabling').fadeIn(function(){
+						contestDataURL="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/賽程表";
+						loadContestNew(function(){});						
+					});
+				});
+				$("#ToShowContestTableNewTest").click(function(){
+					$('#disabling').fadeIn(function(){
+						contestDataURL="/besg/data/contestData.htm";
+						loadContestNew(function(){
+							if(contestTableId==undefined)
+								contestTableId='contestTable';
+							$('#'+contestTableId).addClass('contestTableTestingMode');
+
+						});
+					});
+				});
+				theDiv.fadeIn();
+			});
+		});
+
+		loadContestNew(function(){
+			$('#contestMatch').contestInfoShowMatch('');
+		});
+	}
+</script>
+<h1 id="header">
+	賽事公告
+</h1>
+<div id='tempDiv'>
+</div>
+	<div id="contestBoard">
+		<h3>賽程表及說明</h3>
+		<div>	
+			<div id='ContestTableIntro'>
+				<p style="text-align:left; font-size:14px; margin:1em;">
+					Loading...
+				</p>
+				<p style="text-align:right; font-size:14px; margin:1em;">
+					若無法顯示，請至<a href='/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/賽程表' target="_blank">賽程表wiki</a>觀看賽程表
+				</p>
+			</div>
+		</div>
+		<h3>比賽場次</h3>
+		<div>
+			<table id="contestMatch"></table>
+		</div>
+		<h3>隊伍資訊</h3>
+		<div>
+			<table border="5" width="560">
+<tbody><tr><td width="130" class="">隊名</td> <td width="130" class="">隊名簡稱</td> <td width="100" class="unpay">狀態</td> </tr>
+<tr class="total_team_data"><td width="130" class="">Field Exposed</td> <td width="130" class="">FES</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">電機老屁股</td> <td width="130" class="">EEOM</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">魯真銷極甜</td> <td width="130" class="">MKT</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">家杞OP</td> <td width="130" class="">QQQ</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">帥臉團</td> <td width="130" class="">CuteBs</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Department of applied mat</td> <td width="130" class="">DoAM</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">KJBJ4</td> <td width="130" class="">KJB</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">試試而已</td> <td width="130" class="">justry</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">GIBARALIEN</td> <td width="130" class="">GBA</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">柳暗花明又二村</td> <td width="130" class="">YOYO</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">你媽說的隊</td> <td width="130" class="">YMIR</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">69的藝術</td> <td width="130" class="">AceArt</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">TaichungNchuUitilo</td> <td width="130" class="">TNUL</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">我好肥唷胖胖</td> <td width="130" class="">ImFat</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">MindYourOwn</td> <td width="130" class="">LSMYO</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Masterbation</td> <td width="130" class="">MTB</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Tocopherol</td> <td width="130" class="">VitE</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Adenosine triphosphate</td> <td width="130" class="">LSATP</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">泰大意惹</td> <td width="130" class="">ATIgo</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">野格炸彈</td> <td width="130" class="">BOMB</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Lawsanity</td> <td width="130" class="">Law</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">OKFS</td> <td width="130" class="">OKJUMP</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">我愛高畫質</td> <td width="130" class="">HDHD</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">生機Bakery</td> <td width="130" class="">Bakery</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">增昌麻吉</td> <td width="130" class="">Cplus</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">雷雷戰隊</td> <td width="130" class="">DTA</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">牲妓老人院</td> <td width="130" class="">BTaged</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">FRENZ</td> <td width="130" class="">KNS</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">以此所列多</td> <td width="130" class="">UTMO</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">至少贏一場</td> <td width="130" class="">win</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Oh My God!</td> <td width="130" class="">OMG</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">OK GO CHE</td> <td width="130" class="">OGC</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">梅花豬沒有毛</td> <td width="130" class="">Animal</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">Black Jack IV</td> <td width="130" class="">BJIV</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">毛哥特戰隊</td> <td width="130" class="">MST</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">海鮮掏寶隊</td> <td width="130" class="">TowBow</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">性感美男愛寶拉</td> <td width="130" class="">meinan</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">低級Holic</td> <td width="130" class="">SMD</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">毛毛朋友幫</td> <td width="130" class="">MaoMao</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">醜小鴨變黑天鵝</td> <td width="130" class="">CheM</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">FirstBlood</td> <td width="130" class="">FIRB</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">我難過</td> <td width="130" class="">ImSaD</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">IonicLiquidSorceress</td> <td width="130" class="">ILS</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">League of Forest</td> <td width="130" class="">LoF</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">心悅坊</td> <td width="130" class="">FUN</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">我是好射員</td> <td width="130" class="">YiCow</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">看起來在走路其實在跑步</td> <td width="130" class="">LWIR</td> <td width="100" class="unpay"></td> </tr><tr class="total_team_data"><td width="130" class="">ME機械人</td> <td width="130" class="">MEP</td> <td width="100" class="unpay"></td> </tr></tbody></table>
+
+		</div>
+	</div>
+
+</body>
+</html>

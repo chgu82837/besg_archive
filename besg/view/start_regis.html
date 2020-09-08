@@ -1,0 +1,102 @@
+﻿﻿
+<style>
+	img.regis_sponsor{
+		margin-left:5%;
+		width:225px; 
+	}
+
+	/*some CSS are overwritten by besgRule.css*/
+	#page #accordion #contestRule #header{
+		display:none;
+	}
+	#page #accordion h3{
+		margin-left:0;
+	}
+	#pageFrame #page #header{
+		font-weight:bold;
+	}
+</style>
+
+<script type="text/javascript">
+	var oriTimer;
+	$(document).ready(function(){
+		$("#accordion").accordion({
+			heightStyle: "content",
+			collapsible: true,
+			active:2
+		});
+		
+		clearInterval(oriTimer);
+		oriTimer=setInterval(function(){
+			var remain=$("#timer").attr('remain');
+			$("#timer").attr('remain',(remain-1));
+			var result="";
+			result=result+(remain%60)+"秒";
+			remain=(remain-(remain%60))/60;
+			result=(remain%60)+"分鐘 "+result;
+			remain=(remain-(remain%60))/60;
+			result=(remain%24)+"小時 "+result;
+			remain=(remain-(remain%24))/24;
+			result=(remain)+"天 "+result;
+			$("#timer").text("還剩下 "+result+"可以報名！");
+		},1000);
+		//console.log(oriTimer);
+	});
+</script>
+
+<h1 id='header'>選手專區</h1>
+
+
+<div id="accordion">
+	<h3>比賽規則</h3>
+	<div id="contestRule">
+		<link rel="stylesheet" type="text/css" href="/besg/data/css/besgRule.css?201305041430" />
+
+<script type="text/javascript">
+	pageCompleteCustom=function(){
+		$('#page a').button();
+		
+		//預設應連到:
+		var wikiURL="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/比賽規則";
+		//測試時:
+		wikiURL='/besg/data/rule.html';
+
+		$.ajax({
+			url:wikiURL,
+			success:function(data){
+				$("#ruleContent").fadeOut(function(){
+					$("#ruleContent").empty().append($(data).find("#mw-content-text"));
+					$("#ruleContent").show();
+					pageComplete(true,true,true);
+				});
+			},
+			error:function(){
+				console.log('wiki規則位置:'+wikiURL+'\n讀取失敗！');
+				pageComplete(true,true,true);
+			}
+		});
+	}
+</script>
+
+<h1 id="header">第一屆 BlackSwan E-Sport GAME（BESG）<br/>比賽規則</h1>
+<a href="/wiki/index.php/學生會:黑天鵝盃全校電競聯賽/比賽規則" target="_blank">前往本活動wiki觀看比賽規則</a>
+
+<div id="ruleContent">
+	<p style="text-align:left; font-size:14px; margin:1em;">loading...</p>
+	<p style="text-align:right; font-size:14px; margin:1em;">若無法顯示，請點選"前往本活動wiki觀看比賽規則"</p>
+</div>
+	</div>
+	<!--
+		<h3>我要報名！！</h3>
+		<div>
+					</div>
+	-->
+	<!--
+		<h3>狀態查詢、確認</h3>
+		<div>
+					</div>
+	-->
+	<h3>贊助廠商</h3>
+	<div>
+		<img class='regis_sponsor' src='/besg/data/images/sponsor_1.jpg' style='margin-bottom: 1em;'><img class='regis_sponsor' src='/besg/data/images/sponsor_2.jpg' style='margin-bottom: 1em;'><img class='regis_sponsor' src='/besg/data/images/sponsor_3.jpg' style='margin-bottom: 1em;'><img class='regis_sponsor' src='/besg/data/images/sponsor_4.jpg' style='margin-bottom: 1em;'>	</div>
+</div><!--accordion-->
