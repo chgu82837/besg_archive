@@ -173,7 +173,7 @@ var contestLevel;
 var team;
 var match;
 
-//從total_team.php蒐集隊伍列表:
+//從total_team.html蒐集隊伍列表:
 function loadTeamList(){
 	team=new Array;
 	console.log('開始蒐集隊伍列表');

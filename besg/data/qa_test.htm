@@ -25,7 +25,7 @@
 			var toBeSubmit={};
 			toBeSubmit[$('#askingBox input').attr('name')]=$('input').val();
 			toBeSubmit[$('#askingBox textarea').attr('name')]=$('textarea').val();
-			$.post('/besg/view/db_question.php',toBeSubmit,function(res){
+			$.post('/besg/view/db_question.html',toBeSubmit,function(res){
 				$('#disabling').fadeIn(function(){
 					$('#askingBox').empty().append(res);
 					$('#disabling').fadeOut();
@@ -35,7 +35,7 @@
 	});
 </script>
 
-<form action="/besg/view/db_question.php" method="post" id="">
+<form action="/besg/view/db_question.html" method="post" id="">
 	<fieldset class="qa">
 		<input class="qaNickName" placeholder="暱稱(限15字)" type="text" name="name" maxlength="15">
 		<textarea class="qaContent" name="question" maxlength="200" placeholder="問題(限200字)"></textarea>

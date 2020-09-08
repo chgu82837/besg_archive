@@ -13,20 +13,20 @@
 			toLoginPost['t_name']=$('#loginForm input').eq(0).val();
 			toLoginPost['t_pw']=$('#loginForm input').eq(1).val();
 
-			PostPopUp("../besg/view/result_login.php",toLoginPost,true);
+			PostPopUp("../besg/view/result_login.html",toLoginPost,true);
 		});
 		
 		$('#toManage').button().click(function(){
-			PopUpLoad('/besg/view/show_login.php');
+			PopUpLoad('/besg/view/show_login.html');
 		});
 		$('#toLogout').button().click(function(){
-			PopUpLoad('/besg/view/logout.php');
+			PopUpLoad('/besg/view/logout.html');
 		});
 	});
 </script>
 
 
-			<form id='loginForm' action='../view/result_login.php' method='post'>
+			<form id='loginForm' action='../view/result_login.html' method='post'>
 					<fieldset style='width: 93%;'>		
 						<legend>入口</legend>
 						<input type='text' class='input_full' placeholder='隊伍名稱' name='t_name' >

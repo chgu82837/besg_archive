@@ -11,7 +11,7 @@ jQuery(document).ready(function($) {
 			toPost[term.eq(i).attr('name')]=term.eq(i).val();
 		}
 
-		PostPopUp("../besg/view/db_regis.php",toPost,false);
+		PostPopUp("../besg/view/db_regis.html",toPost,false);
 	});
 });
 //]]>
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 <link rel="stylesheet" type="text/css" href="/besg/data/css/post_regis.css"/>
 <div id='content' style="width:1024px">
 
-	<form action="/besg/view/db_regis.php" method="post" id="finalFrom">
+	<form action="/besg/view/db_regis.html" method="post" id="finalFrom">
 
 
 		
